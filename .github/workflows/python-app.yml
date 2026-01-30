@@ -11,28 +11,42 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # 1️⃣ Checkout code
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
+    # 2️⃣ Setup Python
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
-        python-version: '3.10'
+        python-version: "3.10"
 
+    # 3️⃣ Upgrade pip
+    - name: Upgrade pip
+      run: python -m pip install --upgrade pip
+
+    # 4️⃣ Install dependencies (SAFE even if some are unused)
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install streamlit pandas numpy scikit-learn joblib matplotlib seaborn
 
-    - name: Check model loading
+    # 5️⃣ Verify model files exist
+    - name: Check model files
+      run: |
+        test -f models/travel_model2.pkl
+        test -f models/model_columns2.pkl
+        echo "✅ Model files found"
+
+    # 6️⃣ Load ML model (important for ML projects)
+    - name: Load ML model
       run: |
         python - <<EOF
         import joblib
         joblib.load("models/travel_model2.pkl")
         joblib.load("models/model_columns2.pkl")
-        print("✅ Model files loaded successfully")
+        print("✅ Model loaded successfully")
         EOF
 
+    # 7️⃣ Streamlit syntax check (NO server start)
     - name: Streamlit app syntax check
-      run: |
-        python -m py_compile app/app.py
+      run: python -m py_compile app/app.py
