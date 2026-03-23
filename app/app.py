@@ -68,9 +68,9 @@ budget_options = ["Low","Medium","High"]
 climate_options = ["Cold","Warm","Hot"]
 travel_type_options = ["Beach","Adventure","Historical"]
 season_options = ["Summer","Winter","Monsoon"]
-crowd_options = ["Low","Medium","High"]
+#crowd_options = ["Low","Medium","High"]
 accommodation_options = ["Hotel","Resort","Homestay","Lodge"]
-family_options = ["Yes","No"]
+#family_options = ["Yes","No"]
 travel_method_options = ["Bus","Train","Flight","Car"]
 
 col1, col2 = st.columns(2)
@@ -90,9 +90,9 @@ with col2:
     avg_cost = st.number_input(
         "Average Cost (₹)", min_value=1000, max_value=500000, value=20000
     )
-    crowd_level = st.selectbox("Crowd Level", crowd_options)
+    #crowd_level = st.selectbox("Crowd Level", crowd_options)
     accommodation_type = st.selectbox("Accommodation Type", accommodation_options)
-    family_friendly = st.selectbox("Family Friendly", family_options)
+    #family_friendly = st.selectbox("Family Friendly", family_options)
     travel_method = st.selectbox("Travel Method", travel_method_options)
 
 
@@ -108,9 +108,9 @@ input_dict = {
     'Avg_Temperature': avg_temperature,
     'Avg_Cost': avg_cost,
     'Rating': rating,
-    'Crowd_Level': crowd_level,
+    #'Crowd_Level': crowd_level,
     'Accommodation_Type': accommodation_type,
-    'Family_Friendly': family_friendly,
+    #'Family_Friendly': family_friendly,
     'Travel_Method': travel_method
 }
 
